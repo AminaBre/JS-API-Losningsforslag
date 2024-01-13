@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 3</title>
+</head>
+
+<body>
+    <input type="button" id="random-btn" value="Trykk her!">
+    <p id="random-txt"></p>
+    <script>
+
+        const randomBtn = document.getElementById("random-btn");
+        const randomTxt = document.getElementById("random-txt");
+
+        randomBtn.onclick = showRandomNumber;
+
+        function showRandomNumber() {
+            const randomNumberBetween1And70 = Math.floor(Math.random() * 70) + 1;
+
+            randomTxt.innerHTML = randomNumberBetween1And70;
+        }
+    </script>
+</body>
+
+</html>

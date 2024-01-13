@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=¨, initial-scale=1.0" />
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 7</title>
+</head>
+
+<body>
+    <img src="assets/crystalball.png" id="crystall-ball" />
+    <p id="wisdom-txt">Din spådom er...</p>
+    <script>
+        const wisdomArray = [
+            "Du kommer til å klappe en hund i dag",
+            "Du vinner 1000kr i lotto!",
+            "Du kommer til å snuble...",
+        ];
+        const crystallBall = document.getElementById("crystall-ball");
+        const wisdomTxt = document.getElementById("wisdom-txt");
+        crystallBall.onclick = showWisdom;
+
+        function showWisdom() {
+            const userName = prompt("Hva heter du?");
+            if (userName == "") {
+                alert("Du må skrive inn navnet ditt.");
+            } else {
+                const randomNumber = Math.floor(Math.random() * wisdomArray.length);
+                wisdomTxt.innerHTML = `${userName}, ${wisdomArray[randomNumber]}`;
+            }
+        }
+    </script>
+</body>
+
+</html>

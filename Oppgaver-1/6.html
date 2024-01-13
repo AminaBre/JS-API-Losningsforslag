@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=¨, initial-scale=1.0" />
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 6</title>
+</head>
+
+<body>
+    <input type="text" value="Skriv inn gjenstand..." id="pack-txt" />
+    <input type="button" value="Legg til" id="add-btn" />
+    <ul id="pack-list"></ul>
+
+    <script>
+        const packTxt = document.getElementById("pack-txt");
+        const addBtn = document.getElementById("add-btn");
+        const packlist = document.getElementById("pack-list");
+        let packlistArray = ["Telt", "Tannbørste", "Solhatt"];
+
+        showPacklist();
+        addBtn.onclick = addPackingItem;
+
+
+        function addPackingItem() {
+            packlist.innerHTML = "";
+
+            const packTxtValue = packTxt.value;
+            packlistArray.push(packTxtValue);
+            showPacklist();
+        }
+
+        function showPacklist() {
+            for (let i = 0; i < packlistArray.length; i++) {
+                packlist.innerHTML += `<li>${packlistArray[i]}</li>`;
+            }
+        }
+    </script>
+</body>
+
+</html>

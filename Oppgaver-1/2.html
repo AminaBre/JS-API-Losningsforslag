@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 2</title>
+</head>
+
+<body>
+    <input type="text" placeholder="Navn på film" id="film-input">
+    <input type="text" placeholder="Året filmen kom ut" id="film-year-input">
+    <input type="button" id="show-film-btn" value="Ferdig!">
+    <p id="show-film-txt"></p>
+    <script>
+        const showFilmBtn = document.getElementById("show-film-btn");
+        const showFilmTxt = document.getElementById("show-film-txt");
+
+        showFilmBtn.onclick = collectFilmInfo;
+
+        function collectFilmInfo() {
+            const filmInputValue = document.getElementById("film-input").value;
+            const filmYearInputValue = document.getElementById("film-year-input").value;
+
+            showFilmInfo(filmInputValue, filmYearInputValue);
+        }
+
+        function showFilmInfo(filmName, filmYear) {
+            showFilmTxt.innerHTML = `Filmen ${filmName} kom ut i år ${filmYear}`;
+        }
+    </script>
+</body>
+
+</html>

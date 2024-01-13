@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 4</title>
+</head>
+
+<body>
+    <p id="length-txt"></p>
+    <div id="img-container"></div>
+    <script>
+        const imgContainer = document.getElementById("img-container");
+        const lengthTxt = document.getElementById("length-txt");
+        const imgArray = ["img1.jpeg", "img2.jpeg", "img3.jpeg"];
+
+        lengthTxt.innerHTML = `Det finnes ${imgArray.length} bilder i arrayet.`;
+        for (let i = 0; i < imgArray.length; i++) {
+            imgContainer.innerHTML += `<img src="assets/${imgArray[i]}" style="width:150px"/>`;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 3</title>
+</head>
+
+<body>
+    <input type="button" id="show-cats-btn" value="Vis katt!">
+    <p id="cat-amount-txt">Antall katter: 0</p>
+    <div id="cat-container"></div>
+    <script>
+        const showCatsBtn = document.getElementById("show-cats-btn");
+        const catAmountTxt = document.getElementById("cat-amount-txt");
+        const catContainer = document.getElementById("cat-container");
+
+        let catCounter = 0;
+
+        showCatsBtn.onclick = updateCatsAmount;
+
+        function updateCatsAmount() {
+            catCounter++;
+            catAmountTxt.innerHTML = `Antall katter: ${catCounter}`
+            showCats(catCounter);
+        }
+        function showCats(counter) {
+            catContainer.innerHTML = "";
+
+            console.log("Inne i showcats", counter)
+            for (let i = 0; i < counter; i++) {
+                catContainer.innerHTML += `<img src="assets/cat.avif" style="width: 100px;"/ >`
+            }
+        }
+
+    </script>
+</body>
+
+</html>
