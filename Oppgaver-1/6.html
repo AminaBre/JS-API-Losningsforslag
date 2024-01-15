@@ -27,9 +27,14 @@
         function addPackingItem() {
             packlist.innerHTML = "";
 
-            const packTxtValue = packTxt.value;
-            packlistArray.push(packTxtValue);
-            showPacklist();
+            if (packTxt.value == "") {
+                alert("Du må skrive noe inn i tekstfeltet :o")
+            } else {
+                const packTxtValue = packTxt.value;
+                packlistArray.push(packTxtValue);
+                packTxt.value = "";
+                showPacklist();
+            }
         }
 
         function showPacklist() {
