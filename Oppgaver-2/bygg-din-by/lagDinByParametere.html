@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="©Amina Brenneng">
+    <title>Bygg din egen by!</title>
+    <link rel="stylesheet" href="styling.css" />
+</head>
+
+<body>
+    <div class="main-container">
+        <div style="background: rgba(255, 255, 255, 0.662);">
+            <h1>Bygg din egen by!</h1>
+
+            <div style="font-weight: bold; display: flex; width: 750px; justify-content: space-between;">
+                <p>Selg en geit, få 100 mynter.</p>
+                <p>Ett hus koster 500 mynter</p>
+                <p>Ett slott koster 1000 mynter</p>
+            </div>
+            <h2 id="bank-account" style="font-weight: bold;">
+                Du har 500 mynter på din konto.
+            </h2>
+        </div>
+        <div>
+            <img src="images/goat-png.png" id="goat-img" class="goat" />
+            <img src="images/house-png.png" id="house-img" class="house" />
+            <img src="images/castle.png" id="castle-img" class="castle" />
+            <div class="well-container">
+                <div class="water-container">
+                    <div id="water-amount" class=""></div>
+                </div>
+                <img src="images/well.png" id="well-img" class="well" />
+            </div>
+        </div>
+
+    </div>
+    <ul id="shopping-list"></ul>
+    <script>
+        /* Denne koden er optimalisert med parametere,
+        her trenger vi altså ikke separate funksjoner for hus/castle. Dette er den bedre måten å gjøre det på,
+        kontra lagDinBy.html */
+        const goatImg = document.getElementById("goat-img");
+        const houseImg = document.getElementById("house-img");
+        const castleImg = document.getElementById("castle-img");
+        const bankAccount = document.getElementById("bank-account");
+        const shoppingList = document.getElementById("shopping-list");
+        const waterAmountContainer = document.getElementById("water-amount");
+
+        let coins = 500;
+        let waterAmount = 200;
+        const housePrice = 500;
+        const castlePrice = 1000;
+        const goatPrice = 100;
+
+        goatImg.addEventListener("click", sellGoat);
+        houseImg.addEventListener("click", function () {
+            purchase("hus", housePrice)
+        });
+        castleImg.addEventListener("click", function () {
+            purchase("slott", castlePrice)
+        });
+
+        function sellGoat() {
+            coins = coins + goatPrice;
+            createMessage("geit", goatPrice, false)
+            showCoins();
+            decreaseWell()
+        }
+
+        function purchase(propertyType, propertyPrice) {
+            console.log("Inne i purchase", coins)
+            if (coins >= propertyPrice) {
+                coins = coins -= propertyPrice;
+                createMessage(propertyType, propertyPrice, true)
+                showCoins();
+                decreaseWell()
+            } else {
+                createErrorMessage();
+            }
+        }
+
+        function createMessage(object, amount, purchase) {
+            console.log("Inne i coins?")
+            const newMessage = document.createElement("li");
+
+            if (purchase == false) {
+                newMessage.innerHTML = `Du solgte en ${object} for ${amount} mynter.`;
+                newMessage.style.backgroundColor = "green";
+            } else {
+                console.log("Inne i else i coins", coins)
+                newMessage.innerHTML = `Du kjøpte et ${object} for ${amount} mynter.`;
+                newMessage.style.backgroundColor = "yellow";
+            }
+
+            shoppingList.append(newMessage);
+        }
+
+        function createErrorMessage() {
+            const newErrorMessage = document.createElement("li");
+            newErrorMessage.innerHTML = `Du har ikke nok mynter!`;
+            newErrorMessage.style.backgroundColor = "red";
+            shoppingList.append(newErrorMessage);
+        }
+
+        function decreaseWell() {
+            waterAmount -= 10;
+
+            if (waterAmount <= 0) {
+                alert("Oi, du gikk visst tom for vann! Brønnen er full igjen.")
+                waterAmount = 200;
+            }
+            waterAmountContainer.style.height = `${waterAmount}px`
+        }
+
+        function showCoins() {
+            bankAccount.innerHTML = `Du har ${coins} mynter på din konto.`;
+        }
+    </script>
+</body>
+
+</html>

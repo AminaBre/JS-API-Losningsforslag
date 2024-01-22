@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="©Amina Brenneng">
+  <title>Bygg din egen by!</title>
+  <link rel="stylesheet" href="styling.css" />
+</head>
+
+<body>
+  <div class="main-container">
+    <div style="background: rgba(255, 255, 255, 0.662);">
+      <h1>Bygg din egen by!</h1>
+
+      <div style="font-weight: bold; display: flex; width: 750px; justify-content: space-between;">
+        <p>Selg en geit, få 100 mynter.</p>
+        <p>Ett hus koster 500 mynter</p>
+        <p>Ett slott koster 1000 mynter</p>
+      </div>
+      <h2 id="bank-account" style="font-weight: bold;">
+        Du har 500 mynter på din konto.
+      </h2>
+    </div>
+    <div>
+      <img src="images/goat-png.png" id="goat-img" class="goat" />
+      <img src="images/house-png.png" id="house-img" class="house" />
+      <img src="images/castle.png" id="castle-img" class="castle" />
+      <div class="well-container">
+        <div class="water-container">
+          <div id="water-amount" class=""></div>
+        </div>
+        <img src="images/well.png" id="well-img" class="well" />
+      </div>
+    </div>
+
+  </div>
+  <ul id="shopping-list"></ul>
+  <script>
+    /* Denne koden er IKKE optimalisert, den er altså unødvendigig lang og IKKE den beste måten å løse oppgavene på. 
+    Vi ser at vi trenger separate funksjoenr avhengig av om det er et hus/slott etc. 
+    Det er fordi jeg her ikke bruker parametere. Se gjerne på denne versjonen først, slik at du henger med
+    på tankegangen, se deretter på lagDinByParametere.html for å se hvordan jeg optimaliserer den. */
+    const goatImg = document.getElementById("goat-img");
+    const houseImg = document.getElementById("house-img");
+    const castleImg = document.getElementById("castle-img");
+    const bankAccount = document.getElementById("bank-account");
+    const shoppingList = document.getElementById("shopping-list");
+    const waterAmountContainer = document.getElementById("water-amount");
+
+    let coins = 500;
+    let waterAmount = 200;
+    const goatPrice = 100;
+    const housePrice = 500;
+    const castlePrice = 1000;
+
+    goatImg.addEventListener("click", sellGoat);
+    houseImg.addEventListener("click", buyHouse);
+    castleImg.addEventListener("click", buyCastle);
+
+    //Se hvordan vi bruker 3 nesten like funksjoner her "buyGoat", "buyHouse", "buyCastle", det er unødvendig
+    function sellGoat() {
+      coins = coins + goatPrice;
+      //Hver gang vi selger en geit skal tre handlinger trigges. 
+      /* 
+      1. Vi skal lage å printe ut en beskjed om at vi har solgt en geit
+      2. Vi skal oppdatere hvor mye penger vi har 
+      3. Vi skal senke hvor mye vann det er i brønnen
+      */
+      createMessageGoat()
+      showCoins();
+      decreaseWell()
+    }
+
+    function buyHouse() {
+
+      if (coins >= housePrice) {
+        coins = coins - housePrice;
+        //Hver gang vi kjøper et hus skal tre handlinger trigges. 
+        /*
+        1. Vi skal lage å printe ut en beskjed om at vi har kjøpt et hus
+        2. Vi skal oppdatere hvor mye penger vi har 
+        3. Vi skal senke hvor mye vann det er i brønnen
+        */
+        createMessageHouse()
+        showCoins();
+        decreaseWell()
+      } else {
+        //Hvis vi ikke har nok penger
+        createErrorMessage();
+      }
+    }
+
+    function buyCastle() {
+
+      //Hver gang vi kjøper et slott skal tre handlinger trigges. 
+      /*
+      1. Vi skal lage å printe ut en beskjed om at vi har kjøpt slott hus
+      2. Vi skal oppdatere hvor mye penger vi har 
+      3. Vi skal senke hvor mye vann det er i brønnen
+      */
+      if (coins >= castlePrice) {
+        coins = coins -= castlePrice;
+        createMessageCastle()
+        showCoins();
+        decreaseWell()
+      } else {
+        //Hvis vi ikke har nok penger
+        createErrorMessage();
+      }
+    }
+
+    function createMessage(object, amount, purchase) {
+      const newMessage = document.createElement("li");
+
+      if (purchase == false) {
+        newMessage.innerHTML = `Du solgte en ${object} for ${amount} mynter.`;
+        newMessage.style.backgroundColor = "green";
+      } else {
+        newMessage.innerHTML = `Du kjøpte et ${object} for ${amount} mynter.`;
+        newMessage.style.backgroundColor = "yellow";
+      }
+
+      shoppingList.append(newMessage);
+    }
+
+    //Her kommer også 3 nesten like funksjoner, det er unødvendig. Vi burde bruke parametere.
+    function createMessageGoat() {
+      const newMessage = document.createElement("li");
+
+      newMessage.innerHTML = `Du solgte en geit for ${goatPrice} mynter.`;
+      newMessage.style.backgroundColor = "green";
+
+
+      shoppingList.append(newMessage);
+    }
+
+    function createMessageHouse() {
+      const newMessage = document.createElement("li");
+
+      newMessage.innerHTML = `Du kjøpte et hus for ${housePrice} mynter.`;
+      newMessage.style.backgroundColor = "yellow";
+
+
+      shoppingList.append(newMessage);
+    }
+
+
+    function createMessageCastle() {
+      const newMessage = document.createElement("li");
+
+      newMessage.innerHTML = `Du kjøpte et slott for ${castlePrice} mynter.`;
+      newMessage.style.backgroundColor = "yellow";
+
+
+      shoppingList.append(newMessage);
+    }
+
+    function createErrorMessage() {
+      const newErrorMessage = document.createElement("li");
+      newErrorMessage.innerHTML = `Du har ikke nok mynter!`;
+      newErrorMessage.style.backgroundColor = "red";
+      shoppingList.append(newErrorMessage);
+    }
+
+    function decreaseWell() {
+      waterAmount -= 10;
+
+      if (waterAmount <= 0) {
+        alert("Oi, du gikk visst tom for vann! Brønnen er full igjen.")
+        waterAmount = 200;
+      }
+
+      //Her sier jeg rett og slett at høyden på den blå containeren/"vannet" skal være like mange px
+      //som antall som ligger i waterAmount-variabelen.
+      waterAmountContainer.style.height = `${waterAmount}px`
+    }
+
+    function showCoins() {
+      bankAccount.innerHTML = `Du har ${coins} mynter på din konto.`;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>3</title>
+</head>
+
+<body>
+    <button id="up-btn">^</button>
+    <button id="left-btn"><-- </button>
+            <button id="right-btn">--> </button>
+            <button id="down-btn">v</button>
+            <script>
+                let leftBtn = document.getElementById("left-btn");
+                let rightBtn = document.getElementById("right-btn");
+                let upBtn = document.getElementById("up-btn");
+                let downBtn = document.getElementById("down-btn");
+
+                document.body.addEventListener("keyup", function (e) {
+                    if (e.code === "ArrowLeft") {
+                        leftBtn.style.backgroundColor = "green";
+                        upBtn.style.backgroundColor = "";
+                        downBtn.style.backgroundColor = "";
+                        rightBtn.style.backgroundColor = "";
+                    } else if (e.code === "ArrowUp") {
+                        upBtn.style.backgroundColor = "green";
+                        downBtn.style.backgroundColor = "";
+                        rightBtn.style.backgroundColor = "";
+                        leftBtn.style.backgroundColor = "";
+                    } else if (e.code === "ArrowDown") {
+                        downBtn.style.backgroundColor = "green";
+                        upBtn.style.backgroundColor = "";
+                        rightBtn.style.backgroundColor = "";
+                        leftBtn.style.backgroundColor = "";
+                    } else if (e.code === "ArrowRight") {
+                        rightBtn.style.backgroundColor = "green";
+                        upBtn.style.backgroundColor = "";
+                        downBtn.style.backgroundColor = "";
+                        leftBtn.style.backgroundColor = "";
+                    }
+                });
+
+            </script>
+</body>
+
+</html>

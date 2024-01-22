@@ -1,0 +1,64 @@
+/* Du skal ikke røre CSS for å løse oppgavene */
+body {
+  width: 100vw;
+  margin: 0px;
+  padding: 0px;
+}
+
+.main-container {
+  position: relative;
+  width: 100vw;
+  min-height: 90vh;
+  overflow-y: hidden;
+  background-image: url("images/background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+img {
+  bottom: 5%;
+}
+
+img:hover {
+  transform: scale(1.1);
+}
+
+.goat {
+  width: 200px;
+  bottom: 10%;
+  left: 5%;
+}
+
+.house {
+  width: 250px;
+  left: 20%;
+}
+.castle {
+  width: 450px;
+  left: 40%;
+}
+.well {
+  width: 250px;
+}
+
+.well-container {
+  position: absolute;
+  top: 30%;
+  left: 70%;
+  width: 350px;
+}
+
+.water-container {
+  position: absolute;
+  right: 5%;
+  border: 2px solid black;
+  height: 210px;
+  width: 50px;
+}
+
+#water-amount {
+  position: absolute;
+  background: blue;
+  height: 200px;
+  width: 50px;
+  bottom: 0px;
+}

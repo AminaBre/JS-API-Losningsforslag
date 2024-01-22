@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 4</title>
+</head>
+
+<body>
+
+    <script>
+        const packingList = [
+            {
+                name: "Nattlue",
+                status: "ikke pakket"
+            },
+            {
+                name: "Bowlinghatt",
+                status: "ikke pakket"
+            },
+            {
+                name: "Tannbørste",
+                status: "pakket"
+            },
+            {
+                name: "Fiskestang",
+                status: "ikke pakket"
+            },
+            {
+                name: "Hansker",
+                status: "pakket"
+            },
+            {
+                name: "Sko",
+                status: "ikke pakket"
+            },
+
+        ]
+
+        function showPackingList() {
+            for (let i = 0; i < packingList.length; i++) {
+                let listElement = document.createElement("li");
+                //Her bruker jeg en ny, forkortet måte å skrive if/else på, ternary operators. Se dokumentasjon her:
+                //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+                //Jeg kunne skrevet en vanlig if/else, se koden jeg har kommentert vekk under på linje 55.
+
+                listElement.style.backgroundColor = packingList[i].status == "pakket" ? "green" : "yellow";
+                listElement.innerHTML = packingList[i].name;
+                document.body.append(listElement);
+            }
+        }
+
+
+        //Alternativet hvis jeg skulle brukt if/else, blir mye lengere enn alternativet på linje 49 men gjør akkurat det samme. :-)
+        /*
+                function getBackgroundColor(status) {
+                    console.log(status)
+                    if (status == "pakket") {
+                        return "green";
+                    } else {
+                        return "yellow";
+                    }
+                }
+        */
+
+        showPackingList();
+
+    </script>
+</body>
+
+</html>
