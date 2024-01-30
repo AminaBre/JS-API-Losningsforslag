@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 1</title>
+</head>
+
+<body>
+
+    <script>
+        const movies = [{
+            name: "Den lille havfrue",
+            year: 2000,
+            genre: "Fantasy"
+        },
+        {
+            name: "Harry Potter",
+            year: 2001,
+            genre: "Fantasy"
+        },
+        {
+            name: "The Revenant",
+            year: 2015,
+            genre: "Western"
+        },
+        {
+            name: "The Conjuring",
+            year: 2005,
+            genre: "Horror"
+        },
+        {
+            name: "Matrix",
+            year: 1996,
+            genre: "Sci-fi"
+        },]
+
+        //2
+        let movieNamesAndYears = movies.map((movie) => ({
+            name: movie.name,
+            year: movie.year
+        }))
+
+        console.log(movieNamesAndYears)
+
+        //3
+        let moviesAfter2000 = movies.filter((movie) => movie.year > 2000);
+        console.log(moviesAfter2000)
+
+        //4 - Tok bokstaven "u" i stedet for a, siden alle mine filmer hadde "a" i seg :-)
+        let moviesIncludingLetterU = movies.filter((movie) => movie.name.toLowerCase().includes("u"));
+
+        console.log(moviesIncludingLetterU);
+
+        //5
+        console.log(movies[2])
+        movies.splice(2, 1);
+
+        console.log(movies)
+    </script>
+</body>
+
+</html>

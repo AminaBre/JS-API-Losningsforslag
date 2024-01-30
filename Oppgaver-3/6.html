@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="©Amina Brenneng">
+    <title>Oppgave 6</title>
+</head>
+
+<body>
+    <input type="text" id="user-input" placeholder="Skriv inn din grønnsak...">
+    <input type="button" id="add-btn" value="Legg til">
+    <ul id="output-ul"></ul>
+    <script>
+        const vegetableArray = ["potet", "paprika", "tomat"]
+        const userInput = document.querySelector("#user-input");
+        const addBtn = document.querySelector("#add-btn");
+        const outputUl = document.querySelector("#output-ul");
+
+        addBtn.addEventListener("click", addVegetable);
+
+        function addVegetable() {
+            const userInputValue = userInput.value;
+
+            vegetableArray.push(userInputValue);
+            showVegetable();
+
+        }
+        function showVegetable() {
+            outputUl.innerHTML = "";
+            for (let i = 0; i < vegetableArray.length; i++) {
+                const liElement = document.createElement("li");
+                liElement.innerHTML += vegetableArray[i];
+                outputUl.append(liElement);
+            }
+        }
+
+        showVegetable();
+    </script>
+</body>
+
+</html>
